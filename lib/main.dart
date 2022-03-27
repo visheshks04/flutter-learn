@@ -4,8 +4,15 @@ void main() => runApp(MaterialApp(
       home: IDCard(),
     ));
 
-class IDCard extends StatelessWidget {
+class IDCard extends StatefulWidget {
   const IDCard({Key? key}) : super(key: key);
+
+  @override
+  State<IDCard> createState() => _IDCardState();
+}
+
+class _IDCardState extends State<IDCard> {
+  int year = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +62,7 @@ class IDCard extends StatelessWidget {
               height: 4,
             ),
             Text(
-              '2nd',
+              year.toString(),
               style: TextStyle(
                   color: Colors.amberAccent[200],
                   letterSpacing: 3,
@@ -130,6 +137,15 @@ class IDCard extends StatelessWidget {
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => {
+          setState(() {
+            year++;
+          })
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[800],
       ),
     );
   }
