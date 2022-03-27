@@ -19,10 +19,12 @@ class Home extends StatelessWidget {
         children: [
           Text('Hello bro!'),
           TextButton(child: Text('new button'), onPressed: () {}),
-          Container(
-            color: Colors.red,
-            child: Text('This is a container'),
-            padding: EdgeInsets.all(20.0),
+          Expanded(
+            child: Container(
+              color: Colors.red,
+              child: Text('This is a container'),
+              padding: EdgeInsets.all(20.0),
+            ),
           )
         ],
         mainAxisAlignment: MainAxisAlignment.spaceAround,
