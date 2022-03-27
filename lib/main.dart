@@ -16,10 +16,10 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.orange,
       ),
       body: Center(
-        child: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.alternate_email),
-          iconSize: 50,
+        child: Container(
+          padding: EdgeInsets.all(20.0),
+          color: Colors.grey,
+          child: Text('Hello there!'),
         ),
       ),
       floatingActionButton: FloatingActionButton(
