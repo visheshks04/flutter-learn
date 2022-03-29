@@ -28,8 +28,9 @@ List<Quote> quotes = [
 
 class QuoteCard extends StatelessWidget {
   Quote quote;
+  Function() delete;
 
-  QuoteCard({required this.quote});
+  QuoteCard({required this.quote, required this.delete});
 
   @override
   Widget build(BuildContext context) {
@@ -37,17 +38,26 @@ class QuoteCard extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Column(children: <Widget>[
-          Text(
-            quote.text,
-            style: TextStyle(fontSize: 10, color: Colors.grey[600]),
-          ),
-          SizedBox(height: 6),
-          Text(
-            quote.author,
-            style: TextStyle(fontSize: 14, color: Colors.grey[800]),
-          )
-        ]),
+        child: Center(
+          child: Column(children: <Widget>[
+            Text(
+              quote.text,
+              style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+            ),
+            SizedBox(height: 6),
+            Text(
+              quote.author,
+              style: TextStyle(fontSize: 10, color: Colors.grey[800]),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            TextButton(
+              onPressed: delete,
+              child: Icon(Icons.delete),
+            )
+          ]),
+        ),
       ),
     );
   }
@@ -67,7 +77,15 @@ class QuotePageState extends State<QuotePage> {
           elevation: 0,
         ),
         body: Column(
-          children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
+          children: quotes
+              .map((quote) => QuoteCard(
+                  quote: quote,
+                  delete: () {
+                    setState(() {
+                      quotes.remove(quote);
+                    });
+                  }))
+              .toList(),
         ));
   }
 }
