@@ -26,23 +26,41 @@ List<Quote> quotes = [
   Quote(author: 'Vishesh', text: 'Hey'),
 ];
 
+Widget quoteTemplate(quote) {
+  return Card(
+    margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+    child: Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Column(children: <Widget>[
+        Text(
+          quote.text,
+          style: TextStyle(fontSize: 10, color: Colors.grey[600]),
+        ),
+        SizedBox(height: 6),
+        Text(
+          quote.author,
+          style: TextStyle(fontSize: 14, color: Colors.grey[800]),
+        )
+      ]),
+    ),
+  );
+}
+
 class QuotePageState extends State<QuotePage> {
   int year = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        title: Text('Quotes'),
-        centerTitle: true,
-        backgroundColor: Colors.redAccent,
-        elevation: 0,
-      ),
-      body: Column(
-          children: quotes
-              .map((quote) => Text('${quote.text} - ${quote.author}'))
-              .toList()),
-    );
+        backgroundColor: Colors.grey[200],
+        appBar: AppBar(
+          title: Text('Quotes'),
+          backgroundColor: Colors.redAccent,
+          centerTitle: true,
+          elevation: 0,
+        ),
+        body: Column(
+          children: quotes.map((quote) => quoteTemplate(quote)).toList(),
+        ));
   }
 }
