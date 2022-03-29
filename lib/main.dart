@@ -26,24 +26,31 @@ List<Quote> quotes = [
   Quote(author: 'Vishesh', text: 'Hey'),
 ];
 
-Widget quoteTemplate(quote) {
-  return Card(
-    margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
-    child: Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Column(children: <Widget>[
-        Text(
-          quote.text,
-          style: TextStyle(fontSize: 10, color: Colors.grey[600]),
-        ),
-        SizedBox(height: 6),
-        Text(
-          quote.author,
-          style: TextStyle(fontSize: 14, color: Colors.grey[800]),
-        )
-      ]),
-    ),
-  );
+class QuoteCard extends StatelessWidget {
+  Quote quote;
+
+  QuoteCard({required this.quote});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(children: <Widget>[
+          Text(
+            quote.text,
+            style: TextStyle(fontSize: 10, color: Colors.grey[600]),
+          ),
+          SizedBox(height: 6),
+          Text(
+            quote.author,
+            style: TextStyle(fontSize: 14, color: Colors.grey[800]),
+          )
+        ]),
+      ),
+    );
+  }
 }
 
 class QuotePageState extends State<QuotePage> {
@@ -60,7 +67,7 @@ class QuotePageState extends State<QuotePage> {
           elevation: 0,
         ),
         body: Column(
-          children: quotes.map((quote) => quoteTemplate(quote)).toList(),
+          children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
         ));
   }
 }
